@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Conferencing</title>
+    <style>
+        /* Add your CSS styles for styling the page here */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        #video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        video {
+            max-width: 100%;
+            margin: 10px;
+        }
+        
+        #chat-container {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Video Conferencing</h1>
+
+    <div id="video-container">
+        <video id="localVideo" autoplay muted></video>
+    </div>
+
+    <div id="chat-container">
+        <div id="chat"></div>
+        <input type="text" id="message" placeholder="Type your message...">
+        <button id="send">Send</button>
+    </div>
+
+    <script>
+        // Add your JavaScript code for video conferencing and chatting here
+        const localVideo = document.getElementById('localVideo');
+        const messageInput = document.getElementById('message');
+        const chat = document.getElementById('chat');
+        const sendButton = document.getElementById('send');
+
+        // You would typically use WebRTC for video/audio interactions, which is beyond the scope of this example.
+
+        // Example code for sending and displaying messages
+        sendButton.addEventListener('click', () => {
+            const message = messageInput.value;
+            if (message) {
+                displayMessage('You', message);
+                // Send the message to other participants using WebRTC data channels or a WebSocket server.
+                // For a production application, you'd need to implement server-side logic.
+                messageInput.value = '';
+            }
+        });
+
+        function displayMessage(sender, message) {
+            const messageElement = document.createElement('div');
+            messageElement.textContent = `${sender}: ${message}`;
+            chat.appendChild(messageElement);
+            chat.scrollTop = chat.scrollHeight;
+        }
+    </script>
+</body>
+</html>
+
